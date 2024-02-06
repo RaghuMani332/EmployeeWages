@@ -1,26 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exceptions
 {
-    class Task
+   public class Task
     {
-        public void uc1()
-         {
-        Random random = new Random();
-        int attendance = random.Next(0, 2); // Generate a random number between 0 and 1
+        public void Uc1()
+        {
+            Random random = new Random();
+            int attendance = random.Next(0, 2); // Generate a random number between 0 and 1
 
-        if (attendance == 1)
-        {
-            Console.WriteLine("Employee is present");
+            if (attendance == 1)
+            {
+                Console.WriteLine("Employee is present");
+                DailyEmployeeWage();
+            }
+            else if (attendance == 0)
+            {
+                Console.WriteLine("Employee is absent");
+            }
         }
-        else if (attendance == 0)
+
+        public void DailyEmployeeWage()
         {
-            Console.WriteLine("Employee is absent");
+            int fullTimeWagePerHour = 20;
+            int fullDayHour = 8;
+            if (EmployeeAttendance() == 1)
+            {
+                int dailyWage = fullTimeWagePerHour * fullDayHour;
+                Console.WriteLine($"The daily wage for a full-time employee is: {dailyWage}");
+            }
+            else
+            {
+                Console.WriteLine("The employee is not present");
+            }
         }
-    }
+
+        public int EmployeeAttendance()
+        {
+            Random random = new Random();
+            return random.Next(0, 2); // Generate a random number between 0 and 1
+        }
     }
 }
