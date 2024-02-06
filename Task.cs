@@ -33,6 +33,17 @@ namespace Exceptions
             {
                 Console.WriteLine("The employee is not present");
             }
+
+        }
+        public void PartTime()
+        {
+           
+            int partTimeWagePerHour = 20;
+            int partTimeDayHour = 8;
+
+                int partTimeDailyWage = partTimeWagePerHour * partTimeDayHour;
+                Console.WriteLine($"The daily wage for a part-time employee is: {partTimeDailyWage}");
+            
         }
 
         public int EmployeeAttendance()
