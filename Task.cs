@@ -6,7 +6,7 @@ namespace Exceptions
     {
         private static int wagePerHour = 20;
         private static int fullDayHour = 8;
-        private static int partTimeDayHour = 4;
+        private static int partTimeDayHour = 8;
 
         public void Uc1()
         {
@@ -17,50 +17,40 @@ namespace Exceptions
         public int EmployeeAttendance()
         {
             Random random = new Random();
-            return random.Next(0, 3); // Generate a random number between 0 and 2
+            return random.Next(0, 2); // Generate a random number between 0 and 2
         }
 
-        public int DailyEmployeeWage(int attendanceStatus)
+        public int DailyEmployeeHours(int attendanceStatus)
         {
             if (attendanceStatus == 1)
             {
-                return wagePerHour * fullDayHour;
+                return fullDayHour;
             }
-            else if (attendanceStatus == 2)
-            {
-                return wagePerHour * partTimeDayHour;
-            }
+           
             else
             {
                 return 0;
             }
         }
 
-
-        public void PartTime()
-        {
-
-            int partTimeWagePerHour = 20;
-            int partTimeDayHour = 8;
-
-            int partTimeDailyWage = partTimeWagePerHour * partTimeDayHour;
-            Console.WriteLine($"The daily wage for a part-time employee is: {partTimeDailyWage}");
-
-        }
-
         public int CalculateWagesOfMonth()
         {
             int numberOfWorkingDays = 20;
+            int totalHours = 0;
             int monthlyWage = 0;
 
             for (int i = 0; i < numberOfWorkingDays; i++)
             {
-                int dailyWage = DailyEmployeeWage(EmployeeAttendance());
-                monthlyWage += dailyWage;
+                int hours = DailyEmployeeHours(EmployeeAttendance());
+                if (totalHours + hours > 100)
+                {
+                    hours = 100 - totalHours; // Limit hours to 100 if it exceeds
+                }
+                totalHours += hours;
+                monthlyWage += hours * wagePerHour;
             }
 
             return monthlyWage;
         }
     }
-
 }
